@@ -1,2 +1,2 @@
 # Dictionary
-TDK Rest API, Multilanguage Dictionary    -    .Net Core- EF Core
+TDK Rest API, Türk Dil Kurumu Word Search, Multilanguage Dictionary    -    .Net Core- EF Core

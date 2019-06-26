@@ -2,7 +2,7 @@
 
 namespace Dictionary.Data.Entities
 {
-    public class TrWordType : DBaseEntity
+    public class WordType : DBaseEntity
     {
         public byte Id { get; set; }
 
@@ -12,7 +12,7 @@ namespace Dictionary.Data.Entities
 
         public override DBaseEntity Copy()
         {
-            return this.MemberwiseClone() as TrWordType;
+            return this.MemberwiseClone() as WordType;
         }
     }
 }

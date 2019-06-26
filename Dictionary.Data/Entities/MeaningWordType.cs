@@ -3,7 +3,7 @@ using System;
 
 namespace Dictionary.Data.Entities
 {
-    public class TrMeaningWordType : DBaseEntity
+    public class MeaningWordType : DBaseEntity
     {
         public Int64 Id { get; set; }
 
@@ -11,13 +11,13 @@ namespace Dictionary.Data.Entities
 
         public byte WordTypeId { get; set; }
 
-        public virtual TrWordType WordType { get; set; }
+        public virtual WordType WordType { get; set; }
 
-        public virtual TrMeaning Meaning { get; set; }
+        public virtual Meaning Meaning { get; set; }
 
         public override DBaseEntity Copy()
         {
-            return this.MemberwiseClone() as TrMeaningWordType;
+            return this.MemberwiseClone() as MeaningWordType;
         }
     }
 }

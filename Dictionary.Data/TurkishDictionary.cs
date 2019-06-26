@@ -30,15 +30,15 @@ namespace Dictionary.Data
             _contextAccessor = contextAccessor;
         }
 
-        public DbSet<TrWord> Words { get; set; }
+        public DbSet<Word> Words { get; set; }
 
-        public DbSet<TrMeaning> Meanings { get; set; }
+        public DbSet<Meaning> Meanings { get; set; }
 
-        public DbSet<TrSaying> Sayings { get; set; }
+        public DbSet<Saying> Sayings { get; set; }
 
-        public DbSet<TrWordType> WordTypes { get; set; }
+        public DbSet<WordType> WordTypes { get; set; }
 
-        public DbSet<TrMeaningWordType> MeaningWordTypes { get; set; }
+        public DbSet<MeaningWordType> MeaningWordTypes { get; set; }
         
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -94,71 +94,71 @@ namespace Dictionary.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TrWordType>().HasData(new TrWordType
+            modelBuilder.Entity<WordType>().HasData(new WordType
             {
                 Id = 1,
                 TdkText = "isim",
                 Text = "Noun"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 2,
                 TdkText = "sıfat",
                 Text = "Adjective"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 3,
                 TdkText = "zarf",
                 Text = "Adverb"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 4,
                 TdkText = "zamir",
                 Text = "Pronoun"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 5,
                 TdkText = "fiil",
                 Text = "Verb"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 6,
                 TdkText = "mecaz",
                 Text = "Metaphor"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 7,
                 TdkText = "hukuk",
                 Text = "Law"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 8,
                 TdkText = "dil bilgisi",
                 Text = "Language Information"
-            }, new TrWordType
+            }, new WordType
             {
                 Id = 9,
                 TdkText = "edat",
                 Text = "Language Information"
             });
 
-            modelBuilder.Entity<TrWord>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
-            modelBuilder.Entity<TrMeaning>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
-            modelBuilder.Entity<TrMeaningWordType>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
-            modelBuilder.Entity<TrSaying>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
-            modelBuilder.Entity<TrWordType>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
+            modelBuilder.Entity<Word>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
+            modelBuilder.Entity<Meaning>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
+            modelBuilder.Entity<MeaningWordType>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
+            modelBuilder.Entity<Saying>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
+            modelBuilder.Entity<WordType>().HasQueryFilter(x => x.IsActive && !x.IsDeleted);
 
-            modelBuilder.Entity<TrWordType>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrMeaning>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrMeaningWordType>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrSaying>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrWord>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<WordType>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<Meaning>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<MeaningWordType>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<Saying>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<Word>().Property(p => p.CreateDate).HasColumnType("smalldatetime");
 
 
-            modelBuilder.Entity<TrWordType>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrMeaning>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrMeaningWordType>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrSaying>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
-            modelBuilder.Entity<TrWord>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<WordType>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<Meaning>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<MeaningWordType>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<Saying>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
+            modelBuilder.Entity<Word>().Property(p => p.LastModifiedDate).HasColumnType("smalldatetime");
 
             base.OnModelCreating(modelBuilder);
         }

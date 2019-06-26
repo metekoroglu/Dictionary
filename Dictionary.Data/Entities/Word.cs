@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dictionary.Data.Entities
 {
-    public class TrWord : DBaseEntity
+    public class Word : DBaseEntity
     {
-        public TrWord()
+        public Word()
         {
-            Meanings = new HashSet<TrMeaning>();
-            Sayings = new HashSet<TrSaying>();
+            Meanings = new HashSet<Meaning>();
+            Sayings = new HashSet<Saying>();
         }
 
         [Key]
@@ -32,15 +32,15 @@ namespace Dictionary.Data.Entities
         [Column(TypeName = "nvarchar(50)")]
         public string Text { get; set; }
 
-        public ICollection<TrMeaning> Meanings { get;private set; }
+        public ICollection<Meaning> Meanings { get;private set; }
 
-        public ICollection<TrSaying> Sayings { get;private set; }
+        public ICollection<Saying> Sayings { get;private set; }
 
 
 
         public override DBaseEntity Copy()
         {
-            return this.MemberwiseClone() as TrWord;
+            return this.MemberwiseClone() as Word;
         }
     }
 }

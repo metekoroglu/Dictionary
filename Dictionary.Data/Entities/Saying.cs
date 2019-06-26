@@ -1,17 +1,12 @@
 ﻿using Dictionary.Domain.Abstracts;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dictionary.Data.Entities
 {
-    public class TrMeaning : DBaseEntity
+    public class Saying : DBaseEntity
     {
-        public TrMeaning()
-        {
-            WordTypes = new HashSet<TrMeaningWordType>();
-        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 Id { get; set; }
@@ -19,15 +14,11 @@ namespace Dictionary.Data.Entities
         public int WordId { get; set; }
 
         [Required]
-        public string MeaningText { get; set; }
-
-        public bool isVerb { get; set; } = false;
+        public string Text { get; set; }
         
-        public  ICollection<TrMeaningWordType> WordTypes { get; set; }
-
         public override DBaseEntity Copy()
         {
-            return this.MemberwiseClone() as TrMeaning;
+            return this.MemberwiseClone() as Saying;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Dictionary.API.Controllers
 
 
         [HttpGet("GetWordMeanings")]
-        public async Task<ApiReturn<TrWord>> GetWordMeaning(string request)
+        public async Task<ApiReturn<Word>> GetWordMeaning(string request)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Dictionary.API.Controllers
 
                     if (word is null)
                     {
-                        return new ApiReturn<TrWord>
+                        return new ApiReturn<Word>
                         {
                             Data = null,
                             Success = true,
@@ -61,7 +61,7 @@ namespace Dictionary.API.Controllers
 
                         await TurkishDictionaryDb.SaveChangesAsync();
 
-                        return new ApiReturn<TrWord>
+                        return new ApiReturn<Word>
                         {
                             Data = word,
                             Success = true,
@@ -74,7 +74,7 @@ namespace Dictionary.API.Controllers
                         query = await TurkishDictionaryDb.Words.Include(x => x.Meanings)
                                                                   .ThenInclude(meaning => meaning.WordTypes)
                                                                .Include(x => x.Sayings).FirstOrDefaultAsync(x => x.TextSimple == word.TextSimple);
-                        return new ApiReturn<TrWord>
+                        return new ApiReturn<Word>
                         {
                             Data = query,
                             Success = true,
@@ -88,7 +88,7 @@ namespace Dictionary.API.Controllers
                 }
                 else
                 {
-                    return new ApiReturn<TrWord>
+                    return new ApiReturn<Word>
                     {
                         Data = query,
                         Success = true,
@@ -101,7 +101,7 @@ namespace Dictionary.API.Controllers
             }
             catch (Exception ex)
             {
-                return Error<TrWord>(new ApiErrorCollection
+                return Error<Word>(new ApiErrorCollection
                 {
                     new ApiError
                     {
@@ -175,10 +175,10 @@ namespace Dictionary.API.Controllers
         }
 
         [NonAction]
-        private async Task<TrWord> ConvertArrayToWordAsync(JArray array)
+        private async Task<Word> ConvertArrayToWordAsync(JArray array)
         {
 
-            var word = new TrWord
+            var word = new Word
             {
                 Text = array[0]["madde"].ToString(),
                 TextSimple = array[0]["madde_duz"].ToString(),
@@ -199,7 +199,7 @@ namespace Dictionary.API.Controllers
 
             foreach (var item in array[0]["anlamlarListe"])
             {
-                TrMeaning meaning = new TrMeaning
+                Meaning meaning = new Meaning
                 {
                     MeaningText = item["anlam"].ToString(),
                     isVerb = Convert.ToInt16(item["fiil"]) == 1 ? true : false
@@ -219,7 +219,7 @@ namespace Dictionary.API.Controllers
                         }
 
 
-                        TrMeaningWordType meaningWordType = new TrMeaningWordType
+                        MeaningWordType meaningWordType = new MeaningWordType
                         {
                             WordType = type
                         };
@@ -238,7 +238,7 @@ namespace Dictionary.API.Controllers
             {
                 foreach (var itemSaying in array[0]["atasozu"])
                 {
-                    TrSaying saying = new TrSaying
+                    Saying saying = new Saying
                     {
                         Text = itemSaying["madde"].ToString()
                     };
@@ -254,7 +254,7 @@ namespace Dictionary.API.Controllers
 
 
         [NonAction]
-        private async Task<TrWord> TdkRequest(string request)
+        private async Task<Word> TdkRequest(string request)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();

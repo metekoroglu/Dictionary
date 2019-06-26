@@ -1,4 +1,4 @@
-# Dictionary
+# Turkish Dictionary
 
 TDK Rest API, Türkçe Sözlük API  -    .Net Core- EF Core
 
